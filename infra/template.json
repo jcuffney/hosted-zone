@@ -1,13 +1,61 @@
 {
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Parameters": {
+        "DomainName": {
+            "Type": "String",
+            "Default": "cuffney.com",
+            "Description": "The domain name for the hosted zone"
+        },
+        "SSMNamespace": {
+            "Type": "String",
+            "Default": "/cuffney/dev/hosted-zone",
+            "Description": "The SSM Namespace"
+        }
+    },
     "Resources": {
-        "Stack": {
-            "Type": "AWS::CloudFormation::Stack",
+        "HostedZone": {
+            "Type": "AWS::Route53::HostedZone",
             "Properties": {
-                "TemplateURL": "https://s3.amazonaws.com/com.cuffney.cf-templates/hosted-zone/template.json",
-                "Parameters": {
-                    "DomainName": "cuffney.com",
-                    "SSMNamespace": "/cuffney/dev/hosted-zone"
+                "Name": {
+                    "Ref": "DomainName"
                 }
+            }
+        },
+        "HostedZoneIdParameter": {
+            "Type": "AWS::SSM::Parameter",
+            "Properties": {
+                "Name": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            {
+                                "Ref": "SSMNamespace"
+                            },
+                            "/hosted-zone-id"
+                        ]
+                    ]
+                },
+                "Type": "String",
+                "Value": {
+                    "Ref": "HostedZone"
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "HostedZoneId": {
+            "Description": "The ID of the created hosted zone",
+            "Value": {
+                "Ref": "HostedZone"
+            }
+        },
+        "HostedZoneNameServers": {
+            "Description": "The name servers for the hosted zone",
+            "Value": {
+                "Fn::GetAtt": [
+                    "HostedZone",
+                    "NameServers"
+                ]
             }
         }
     }

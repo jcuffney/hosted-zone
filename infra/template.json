@@ -41,22 +41,5 @@
                 }
             }
         }
-    },
-    "Outputs": {
-        "HostedZoneId": {
-            "Description": "The ID of the created hosted zone",
-            "Value": {
-                "Ref": "HostedZone"
-            }
-        },
-        "HostedZoneNameServers": {
-            "Description": "The name servers for the hosted zone",
-            "Value": {
-                "Fn::GetAtt": [
-                    "HostedZone",
-                    "NameServers"
-                ]
-            }
-        }
     }
 }

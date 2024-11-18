@@ -8,7 +8,7 @@
         },
         "SSMNamespace": {
             "Type": "String",
-            "Default": "/cuffney/main/hosted-zone",
+            "Default": "/cuffney/main",
             "Description": "The SSM Namespace"
         }
     },
@@ -31,7 +31,7 @@
                             {
                                 "Ref": "SSMNamespace"
                             },
-                            "/hosted-zone-id"
+                            "/hosted-zone/id"
                         ]
                     ]
                 },

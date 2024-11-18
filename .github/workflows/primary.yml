@@ -32,16 +32,14 @@ jobs:
     - name: Validate
       run: |
         aws cloudformation validate-template \
-              --template-body file://$TEMPLATE \
-              --region ${{ secrets.AWS_REGION }}
+          --template-body file://$TEMPLATE \
+          --region ${{ secrets.AWS_REGION }}
 
     - name: Deploy Infrastructure
       if: github.ref == 'refs/heads/main'
       run: |
-        echo "Deploying $STACK_NAME stack"
-        echo "Using $TEMPLATE template"
         aws cloudformation deploy \
-              --stack-name $STACK_NAME \
-              --template-file $TEMPLATE \
-              --no-fail-on-empty-changeset \ 
-              --region ${{ secrets.AWS_REGION }}
+          --stack-name $STACK_NAME \
+          --template-file $TEMPLATE \
+          --no-fail-on-empty-changeset \ 
+          --region ${{ secrets.AWS_REGION }}

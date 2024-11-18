@@ -8,7 +8,7 @@
         },
         "SSMNamespace": {
             "Type": "String",
-            "Default": "/cuffney/dev/hosted-zone",
+            "Default": "/cuffney/main/hosted-zone",
             "Description": "The SSM Namespace"
         }
     },

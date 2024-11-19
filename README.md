@@ -1,6 +1,6 @@
 # Hosted Zone
 
-> Creates a hosted zone for `cuffney.com`
+> Creates a hosted zone
 
 ![primary](https://github.com/jcuffney/hosted-zone/actions/workflows/primary.yml/badge.svg)
 

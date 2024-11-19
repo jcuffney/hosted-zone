@@ -40,6 +40,26 @@
                     "Ref": "HostedZone"
                 }
             }
+        },
+        "DomainParameter": {
+            "Type": "AWS::SSM::Parameter",
+            "Properties": {
+                "Name": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            {
+                                "Ref": "SSMNamespace"
+                            },
+                            "/domain"
+                        ]
+                    ]
+                },
+                "Type": "String",
+                "Value": {
+                    "Ref": "DomainName"
+                }
+            }
         }
     }
 }
